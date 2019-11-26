@@ -10,13 +10,11 @@ function App() {
     <Router>
       <div>
         <nav>
-          <ul>
-            <li>
-              <Link to="/Posts">Publicações</Link>
-            </li>
+          <ul className="TopHeader">
+            <Link to="/Posts">IPTGram</Link>
           </ul>
         </nav>
-        
+
         <Route path="/Posts" exact component={Posts} />
         <Route path="/Post/:id" exact component={Post} />
       </div>

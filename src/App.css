@@ -18,6 +18,39 @@
   font-size: large;
 }
 
+.PostContainer{
+  display: flex;
+  flex-direction: row;
+  background: #c6cacf;
+  margin: 20px 20px 20px 20px;
+  justify-content: space-evenly;
+}
+
+.userIMG{
+  height: 50px;
+  width: 50px;
+  margin: 50px 50px 0px 0px;
+}
+.Conteudo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.SinglePost{
+  background: cornsilk;
+}
+
+
+.TopHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-size: 30px;
+  
+}
+
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from "axios";
+import "./App.css";
 
 export default class Post extends React.Component {
 
@@ -50,20 +51,24 @@ export default class Post extends React.Component {
       return <div>Loading</div>;
     } else {
       var helper = this.state.comentarios.map(comment => (
-        <div>
-          {comment.text}
-          {comment.user.name}
-          {comment.postedAt}
+        <div className="PostContainer">
+          <span>{comment.user.name + ": "} {comment.text} </span>
+          <span>{splitString(comment.postedAt)}</span>
         </div>
       ));
 
       return (
         <div>
-          {this.state.postAtual.postedAt}
-          {this.state.postAtual.likes}
-          {this.state.postAtual.caption}
-          {this.state.postAtual.user.name}
-          <img src={"https://iptgram.azurewebsites.net/api/posts/" + this.state.postAtual.id + "/image"}></img>
+          <div className="Conteudo">
+            <span>
+              <p className="SinglePost">{"Taken: " + splitString(this.state.postAtual.postedAt)}</p>
+              <p className="SinglePost">{this.state.postAtual.likes + " people like this!"}</p>
+              <p className="SinglePost"><font face="verdana">{this.state.postAtual.caption}</font></p>
+              <p className="SinglePost">{"Taken by: " + this.state.postAtual.user.name}</p>
+            </span>
+            <img src={"https://iptgram.azurewebsites.net/api/posts/" + this.state.postAtual.id + "/image"}></img>
+          </div>
+
           <div>
             {helper}
           </div>
@@ -71,4 +76,15 @@ export default class Post extends React.Component {
       );
     }
   }
+}
+
+
+//Tratar a data para apresentar apenas dia/mes/ano
+function splitString(stringToSplit) {
+
+  var date = new Date(stringToSplit);
+  var arrayOfStrings = date.toString().split(' ');
+  var treated = arrayOfStrings[2] + '-' + arrayOfStrings[1] + '-' + arrayOfStrings[3];
+
+  return treated;
 }

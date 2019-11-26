@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from "axios";
+import "./App.css";
+import UserIcon from "../public/user.png";
 
 export default class Posts extends React.Component {
 
@@ -42,12 +44,22 @@ export default class Posts extends React.Component {
           <div>
             {this.state.listaPost.map(post => {
               return (
-                <div>
+                <div >
                   <Link to={"/Post/" + post.id}>
-                    <li>
-                      {post.user.name + " | " + post.postedAt + " | " + post.likes + " | " + post.comments}
-                    </li>
-                    <img src={"https://iptgram.azurewebsites.net/api/posts/" + post.id + "/image"}></img>
+
+                    <div className="PostContainer">
+                      <div className="Conteudo">
+                        <img className="userIMG" src={UserIcon}></img>
+                        <div>
+                          <p>{"Who: " + post.user.name}</p>
+                          <p>{"When: " + splitString(post.postedAt)}</p>
+                          <p>{"Likes: " + post.likes}</p>
+                          <p>{"Comments: " + post.comments}</p>
+                        </div>
+                      </div>
+                      <img src={"https://iptgram.azurewebsites.net/api/posts/" + post.id + "/image"}></img>
+
+                    </div>
                   </Link>
                 </div>
               );
@@ -59,5 +71,13 @@ export default class Posts extends React.Component {
   }
 }
 
+//Tratar a data para apresentar apenas dia/mes/ano
+function splitString(stringToSplit) {
 
+  var date = new Date(stringToSplit);
+  var arrayOfStrings = date.toString().split(' ');
+  var treated = arrayOfStrings[2] + '-' + arrayOfStrings[1] + '-' + arrayOfStrings[3];
+
+  return treated;
+}
 
